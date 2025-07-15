@@ -6,7 +6,10 @@ import os
 import secrets
 
 # Uygulama ve veritabanı yapılandırması
-app = Flask(__name__)
+# HTML, CSS ve JS dosyalarını ana dizinde arayacak şekilde güncellendi
+app = Flask(__name__,
+            template_folder='.',  # .html dosyalarını ana dizinde ara
+            static_folder='.')    # .css ve .js dosyalarını ana dizinde ara
 app.config['SECRET_KEY'] = secrets.token_hex(16) # Güvenli bir gizli anahtar
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chat_app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # Bellek kullanımını optimize etmek için
@@ -151,9 +154,6 @@ def handle_connect():
             print("Kullanıcı oturumu aktif ancak oda ID'si yok veya kullanıcı bulunamadı.")
     else:
         print("Bağlantı kuruldu ama kullanıcı oturumu yok.")
-        # Bağlantı kurulur kurulmaz kullanıcı girişi yapılmadığı için disconnect edebilirsin
-        # veya frontendde kullanıcıyı login'e yönlendirebilirsin.
-        # request.namespace.disconnect() # İstemci tarafında yönlendirme daha iyi
 
 @socketio.on('disconnect')
 def handle_disconnect():
