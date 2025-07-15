@@ -1,488 +1,364 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
+/* Genel Stil */
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #4CAF50, #2196F3, #9C27B0); /* Canlı renk geçişli arkaplan */
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-    color: #e0e0e0;
+    background-color: #36393f; /* Discord gri tonu */
+    color: #dcddde;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden;
-    position: relative;
 }
 
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Auth Container (Login/Register) */
-.auth-container {
-    background: rgba(255, 255, 255, 0.1); /* Yarı şeffaf beyaz */
-    border-radius: 20px; /* Daha fazla yuvarlatma */
-    padding: 50px 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px); /* Cam efekti */
-    -webkit-backdrop-filter: blur(10px); /* Safari desteği */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* İnce, şeffaf kenarlık */
-    width: 380px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.auth-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.0) 100%);
-    z-index: -1;
-    border-radius: 20px;
-}
-
-
-.auth-container h2 {
-    color: #ffffff;
-    margin-bottom: 35px;
-    font-size: 28px;
-    font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.form-group {
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 10px;
-    color: #c0c0c0;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.form-group input {
-    width: calc(100% - 24px);
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1); /* Yarı şeffaf input arka planı */
-    color: #ffffff;
-    font-size: 17px;
-    outline: none;
-    box-sizing: border-box;
-    transition: background 0.3s ease, border 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.form-group input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.form-group input:focus {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
-}
-
-.auth-container button {
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(45deg, #6a82fb, #fc5c7d); /* Canlı buton rengi */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.auth-container button:hover {
-    background: linear-gradient(45deg, #5c6af0, #eb4c6c);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.auth-container button:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.error-message {
-    color: #ff6060;
-    margin-top: 20px;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.auth-container p {
-    margin-top: 30px;
-    font-size: 16px;
-    color: #b0b0b0;
-}
-
-.auth-container p a {
-    color: #87CEEB; /* Açık mavi */
-    text-decoration: none;
-    font-weight: 700;
-    transition: color 0.2s ease;
-}
-
-.auth-container p a:hover {
-    color: #ADD8E6; /* Daha açık mavi */
-    text-decoration: underline;
-}
-
-/* Ana Chat Arayüzü */
 .container {
     display: flex;
-    width: 90vw;
-    max-width: 1400px; /* Daha geniş chat alanı */
+    width: 90%;
+    max-width: 1200px;
     height: 90vh;
-    max-height: 850px; /* Daha uzun chat alanı */
-    background: rgba(255, 255, 255, 0.08); /* Hafif şeffaf */
-    border-radius: 25px; /* Çok daha yuvarlak köşeler */
+    background-color: #2f3136; /* Daha koyu gri */
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(15px); /* Daha güçlü cam efekti */
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15); /* İnce, şeffaf kenarlık */
-    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Sidebar */
+/* Sidebar (Odalar) */
 .sidebar {
-    width: 280px; /* Genişletildi */
-    background: rgba(255, 255, 255, 0.05); /* Sidebar için hafif daha şeffaf */
-    padding: 25px 20px;
+    width: 250px;
+    background-color: #202225; /* Çok koyu gri */
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1); /* Hafif iç gölge */
+    border-right: 1px solid #292b2f;
 }
 
-.user-info {
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    margin-bottom: 25px;
+.sidebar .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar h2 {
+    color: #fff;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.logout-btn {
+    background-color: #f04747; /* Kırmızı */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: #cc3939;
+}
+
+.room-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Listeyi uzatır */
+}
+
+.room-item {
+    margin-bottom: 10px;
+}
+
+.room-item a {
+    display: block;
+    padding: 10px 15px;
+    background-color: #2f3136;
+    color: #dcddde;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.room-item a:hover {
+    background-color: #4f545c;
+    color: #fff;
+}
+
+.room-item.active a {
+    background-color: #5865f2; /* Discord mavi */
+    color: white;
+    font-weight: bold;
+}
+
+/* Chat Alanı */
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #36393f;
+}
+
+.chat-header {
+    background-color: #2f3136;
+    padding: 15px 20px;
+    border-bottom: 1px solid #292b2f;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.user-info span {
-    font-weight: 600;
-    color: #ffffff;
-    font-size: 1.3em;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-
-.logout-button {
-    background: rgba(255, 99, 71, 0.8); /* Domates kırmızısı yarı şeffaf */
-    color: white;
-    padding: 10px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.95em;
-    font-weight: 500;
-    transition: background 0.2s, transform 0.1s ease;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-.logout-button:hover {
-    background: rgba(255, 99, 71, 1);
-    transform: translateY(-1px);
-    box-shadow: 0 5px 12px rgba(0,0,0,0.3);
-}
-
-.channels h3 {
-    color: #b0b0b0;
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-}
-
-.channel-list p {
-    padding: 12px 15px;
-    border-radius: 10px; /* Yuvarlaklaştırıldı */
-    color: #c0c0c0;
-    cursor: pointer;
-    margin-bottom: 10px;
-    transition: background 0.2s, color 0.2s;
-    font-size: 1.1em;
-    font-weight: 500;
-}
-
-.channel-list p:hover, .channel-list p.active-channel {
-    background: rgba(255, 255, 255, 0.15); /* Hover/active için daha belirgin şeffaflık */
-    color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-/* Sidebar - Online Users Bölümü */
-.online-users {
-    margin-top: 25px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    flex-grow: 1; /* Gerekirse boşluğu doldursun */
-}
-
-.online-users h3 {
-    color: #b0b0b0;
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-}
-
-.user-list {
-    max-height: calc(100% - 40px); /* Üstteki h3'ü hesaba kat */
-    overflow-y: auto;
-    padding-right: 5px; /* Scrollbar için boşluk */
-}
-
-/* Scrollbar stilini online kullanıcı listesi için */
-.user-list::-webkit-scrollbar {
-    width: 8px;
-}
-.user-list::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
-}
-.user-list::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
-    border: 2px solid rgba(255, 255, 255, 0.05);
-}
-.user-list::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255, 255, 255, 0.25);
-}
-
-.user-list .user-item, .user-list .no-users {
-    padding: 10px 12px;
-    border-radius: 10px;
-    color: #c0c0c0;
-    cursor: pointer;
-    margin-bottom: 8px;
-    transition: background 0.2s, color 0.2s;
-    font-size: 1.1em;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-}
-
-.user-list .user-item:hover, .user-list .user-item.active-user-item {
-    background: rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.user-list .user-item::before {
-    content: '•'; /* Online göstergesi */
-    color: #4CAF50; /* Yeşil nokta */
-    font-size: 1.5em;
-    line-height: 1;
-    margin-right: 8px;
-}
-
-.user-list .no-users {
-    cursor: default;
-    background: none;
-    color: #808080;
-    font-size: 0.9em;
-    text-align: center;
-    justify-content: center;
-    border: none;
-    box-shadow: none;
-}
-
-/* Main Chat Area */
-.main-chat {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.1); /* Ana chat alanı için koyu şeffaf arka plan */
-}
-
-/* Chat Header */
-.chat-header {
-    background: rgba(0, 0, 0, 0.2); /* Koyu şeffaf */
-    padding: 18px 25px;
+.chat-header h3 {
+    margin: 0;
+    color: #fff;
     font-size: 1.4em;
-    font-weight: 600;
-    color: #ffffff;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
-.chat-header .header-icon {
-    font-size: 1.2em; /* İkon boyutu */
-    font-weight: 700;
+.current-user {
+    font-size: 0.9em;
+    color: #b9bbbe;
 }
-
-.chat-header[data-mode="general"] .header-icon::before {
-    content: '#'; 
-    color: #87CEEB; /* Mavi */
-}
-.chat-header[data-mode="private"] .header-icon::before {
-    content: '@'; 
-    color: #fc5c7d; /* Pembe/mor */
-}
-
 
 .messages {
     flex-grow: 1;
-    padding: 25px;
+    padding: 20px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-}
-
-/* Scrollbar stilini cam temasına uygun hale getirme */
-.messages::-webkit-scrollbar {
-    width: 10px;
-}
-.messages::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05); /* Yarı şeffaf track */
-    border-radius: 5px;
-}
-.messages::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    border: 2px solid rgba(255, 255, 255, 0.05); /* İnce şeffaf kenar */
-}
-.messages::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    gap: 10px; /* Mesajlar arası boşluk */
+    background-color: #36393f;
 }
 
 .message {
+    padding: 8px 12px;
+    border-radius: 8px;
+    max-width: 70%;
     word-wrap: break-word;
     display: flex;
-    align-items: baseline;
-    background: rgba(255, 255, 255, 0.05); /* Mesaj kutuları için şeffaf arka plan */
-    padding: 12px 18px;
-    border-radius: 15px; /* Yuvarlak köşeler */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: background 0.2s ease;
+    flex-direction: column; /* İçeriği dikey sırala */
 }
 
-.message:hover {
-    background: rgba(255, 255, 255, 0.08); /* Hover'da daha belirgin */
+.other-message {
+    background-color: #40444b; /* Diğer kullanıcı mesajları */
+    align-self: flex-start; /* Sola hizala */
+}
+
+.my-message {
+    background-color: #5865f2; /* Kendi mesajların (Discord mavi) */
+    color: white;
+    align-self: flex-end; /* Sağa hizala */
 }
 
 .message .username {
-    font-weight: 700;
-    color: #87CEEB; /* Açık mavi kullanıcı adı */
-    margin-right: 10px;
-    font-size: 1.05em;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #b9bbbe; /* Kullanıcı adı rengi */
+    margin-bottom: 2px;
 }
 
-.message.private-message .username {
-    color: #fc5c7d; /* Özel mesaj gönderen için farklı renk */
+.my-message .username {
+    color: #fff; /* Kendi mesajlarında kullanıcı adı beyaz */
+}
+
+.message .content {
+    font-size: 1em;
+    line-height: 1.4;
 }
 
 .message .timestamp {
-    font-size: 0.78em;
-    color: rgba(255, 255, 255, 0.5); /* Hafif soluk zaman damgası */
-    margin-left: 8px;
-    white-space: nowrap; /* Saati tek satırda tut */
+    font-size: 0.7em;
+    color: #8e9297; /* Zaman damgası rengi */
+    align-self: flex-end; /* Sağ alt köşeye hizala */
+    margin-top: 5px;
 }
 
-.message .text {
-    color: #ffffff;
-    flex-grow: 1;
+.my-message .timestamp {
+    color: #dcddde; /* Kendi mesajlarında zaman damgası daha açık */
 }
 
-.message.system-username {
-    color: #87CEEB; /* Sistem mesajı gönderen adı için renk */
-}
-
-.message.system-notification {
+.system-message {
+    background-color: #2f3136;
+    color: #7289da; /* Sistem mesajları için mor */
+    padding: 10px;
+    border-radius: 5px;
     text-align: center;
     font-style: italic;
-    color: #b0b0b0;
-    background: rgba(255, 255, 255, 0.03);
-    border: none;
-    box-shadow: none;
-    padding: 8px 15px;
-    border-radius: 10px;
-    justify-content: center;
 }
-
 
 .input-area {
     display: flex;
-    padding: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.15); /* Daha koyu şeffaf */
-    align-items: center;
+    padding: 15px 20px;
+    background-color: #2f3136;
+    border-top: 1px solid #292b2f;
 }
 
 .input-area input[type="text"] {
     flex-grow: 1;
-    padding: 14px 18px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 12px; /* Daha yuvarlak */
-    background: rgba(255, 255, 255, 0.12); /* Input için şeffaf arka plan */
-    color: #ffffff;
-    font-size: 1.05em;
-    margin-right: 15px;
+    border-radius: 5px;
+    background-color: #40444b; /* Input arka planı */
+    color: #dcddde;
+    font-size: 1em;
     outline: none;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); /* İç gölge */
-    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .input-area input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.input-area input[type="text"]:focus {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: inset 0 1px 5px rgba(0,0,0,0.3), 0 0 0 2px rgba(255, 255, 255, 0.2);
+    color: #8e9297;
 }
 
 .input-area button {
-    padding: 14px 25px;
-    background: linear-gradient(45deg, #87CEEB, #20B2AA); /* Cam temasına uygun buton rengi */
+    background-color: #7289da; /* Discord moru */
     color: white;
     border: none;
-    border-radius: 12px; /* Daha yuvarlak */
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-left: 10px;
     cursor: pointer;
-    font-size: 1.05em;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    font-size: 1em;
+    transition: background-color 0.2s ease;
 }
 
 .input-area button:hover {
-    background: linear-gradient(45deg, #7AC5DA, #1D9990);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    background-color: #677bc4;
 }
 
-.input-area button:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+.input-area input[type="text"]:disabled,
+.input-area button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Auth Sayfaları (login.html, register.html) */
+.auth-body {
+    background-color: #36393f; /* Discord gri */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.auth-container {
+    background-color: #2f3136;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    color: #dcddde;
+}
+
+.auth-container h2 {
+    color: #fff;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #b9bbbe;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: calc(100% - 20px); /* Padding'i hesaba kat */
+    padding: 10px;
+    border: 1px solid #4f545c;
+    border-radius: 5px;
+    background-color: #40444b;
+    color: #dcddde;
+    font-size: 1em;
+    outline: none;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
+    border-color: #5865f2; /* Discord mavi */
+}
+
+.auth-container button[type="submit"] {
+    background-color: #5865f2; /* Discord mavi */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 20px;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+.auth-container button[type="submit"]:hover {
+    background-color: #4752c4;
+}
+
+.auth-container p {
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.auth-container p a {
+    color: #7289da;
+    text-decoration: none;
+}
+
+.auth-container p a:hover {
+    text-decoration: underline;
+}
+
+/* Flash mesajları */
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.flashes li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+.flashes li.success {
+    background-color: #43b581; /* Discord yeşili */
+    color: white;
+}
+
+.flashes li.danger {
+    background-color: #f04747; /* Discord kırmızısı */
+    color: white;
+}
+
+.flashes li.info {
+    background-color: #7289da; /* Discord moru */
+    color: white;
+}
+
+/* Scrollbar Style */
+.messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: #2f3136;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #40444b;
+    border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background: #5865f2;
 }

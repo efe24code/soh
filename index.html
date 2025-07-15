@@ -3,45 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sohbet Odası</title>
+    <title>Görüntülü Konuşma | Discord Benzeri Chat</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
-            <div class="user-info">
-                <span>{{ username }}</span>
-                <a href="{{ url_for('logout') }}" class="logout-button">Çıkış Yap</a>
+            <div class="header">
+                <h2>Odalar</h2>
+                <button class="logout-btn" onclick="location.href='{{ url_for('logout') }}'">Çıkış Yap</button>
             </div>
-            <div class="channels">
-                <h3>Kanallar</h3>
-                <div class="channel-list">
-                    <p class="active-channel" id="generalChatChannel" data-channel-id="general"># genel-sohbet</p>
-                </div>
-            </div>
-            <div class="online-users">
-                <h3>Çevrimiçi Kullanıcılar</h3>
-                <div class="user-list" id="onlineUsersList">
-                    <p class="no-users">Yükleniyor...</p>
-                </div>
-            </div>
+            <ul class="room-list">
+                {% for room in rooms %}
+                    <li class="room-item {% if current_room and room.id == current_room.id %}active{% endif %}">
+                        <a href="{{ url_for('join_room_route', room_id=room.id) }}">{{ room.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
-        <div class="main-chat">
-            <div class="chat-header" id="chatHeader" data-mode="general">
-                <span class="header-icon"></span> <span id="chatTitle">genel-sohbet</span>
+
+        <div class="chat-area">
+            <div class="chat-header">
+                <h3 id="room-name">{% if current_room %}{{ current_room.name }}{% else %}Oda Seçin{% endif %}</h3>
+                <span class="current-user">Kullanıcı: {{ username }}</span>
             </div>
             <div class="messages" id="messages">
-                </div>
+                {% if current_room %}
+                    {% for message in messages %}
+                        <div class="message {% if message.user_id == user_id %}my-message{% else %}other-message{% endif %}">
+                            <span class="username">{{ message.user.username }}:</span>
+                            <span class="content">{{ message.content }}</span>
+                            <span class="timestamp">{{ message.timestamp.strftime('%H:%M') }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="system-message">
+                        Lütfen bir oda seçerek sohbete başlayın.
+                    </div>
+                {% endif %}
+            </div>
             <div class="input-area">
-                <input type="text" id="messageInput" placeholder="Mesajınızı yazın..." autofocus>
-                <button onclick="sendMessage()">Gönder</button>
+                <input type="text" id="messageInput" placeholder="Mesajınızı yazın..." {% if not current_room %}disabled{% endif %}>
+                <button id="sendMessageButton" {% if not current_room %}disabled{% endif %}>Gönder</button>
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
     <script>
-        const MY_USER_ID = {{ user_id }}; // user_id'yi app.py'den direkt gönderiyoruz
-        const MY_USERNAME = "{{ username }}"; // Kendi kullanıcı adımızı da gönderelim
+        // Python'dan gelen kullanıcı ve oda bilgilerini JavaScript'e aktarma
+        const MY_USER_ID = {{ user_id }};
+        const MY_USERNAME = "{{ username }}";
+        const CURRENT_ROOM_ID = {{ current_room.id if current_room else 'null' }};
     </script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>

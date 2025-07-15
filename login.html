@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giriş Yap</title>
+    <title>Giriş Yap | Discord Benzeri Chat</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
-<body>
+<body class="auth-body">
     <div class="auth-container">
         <h2>Giriş Yap</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
         <form method="POST">
             <div class="form-group">
                 <label for="username">Kullanıcı Adı:</label>
@@ -20,10 +30,7 @@
             </div>
             <button type="submit">Giriş Yap</button>
         </form>
-        {% if error %}
-            <p class="error-message">{{ error }}</p>
-        {% endif %}
-        <p>Hesabın yok mu? <a href="{{ url_for('register') }}">Kaydol</a></p>
+        <p>Hesabın yok mu? <a href="{{ url_for('register') }}">Kayıt Ol</a></p>
     </div>
 </body>
 </html>

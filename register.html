@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaydol</title>
+    <title>Kayıt Ol | Discord Benzeri Chat</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
-<body>
+<body class="auth-body">
     <div class="auth-container">
-        <h2>Kaydol</h2>
+        <h2>Kayıt Ol</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
         <form method="POST">
             <div class="form-group">
                 <label for="username">Kullanıcı Adı:</label>
@@ -18,12 +28,9 @@
                 <label for="password">Şifre:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit">Kaydol</button>
+            <button type="submit">Kayıt Ol</button>
         </form>
-        {% if error %}
-            <p class="error-message">{{ error }}</p>
-        {% endif %}
-        <p>Zaten bir hesabın var mı? <a href="{{ url_for('login') }}">Giriş Yap</a></p>
+        <p>Zaten hesabın var mı? <a href="{{ url_for('login') }}">Giriş Yap</a></p>
     </div>
 </body>
 </html>
