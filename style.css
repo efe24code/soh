@@ -1,0 +1,488 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #4CAF50, #2196F3, #9C27B0); /* Canlı renk geçişli arkaplan */
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Auth Container (Login/Register) */
+.auth-container {
+    background: rgba(255, 255, 255, 0.1); /* Yarı şeffaf beyaz */
+    border-radius: 20px; /* Daha fazla yuvarlatma */
+    padding: 50px 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px); /* Cam efekti */
+    -webkit-backdrop-filter: blur(10px); /* Safari desteği */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* İnce, şeffaf kenarlık */
+    width: 380px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.0) 100%);
+    z-index: -1;
+    border-radius: 20px;
+}
+
+
+.auth-container h2 {
+    color: #ffffff;
+    margin-bottom: 35px;
+    font-size: 28px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #c0c0c0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: calc(100% - 24px);
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1); /* Yarı şeffaf input arka planı */
+    color: #ffffff;
+    font-size: 17px;
+    outline: none;
+    box-sizing: border-box;
+    transition: background 0.3s ease, border 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.auth-container button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #6a82fb, #fc5c7d); /* Canlı buton rengi */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.auth-container button:hover {
+    background: linear-gradient(45deg, #5c6af0, #eb4c6c);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.auth-container button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+    color: #ff6060;
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.auth-container p {
+    margin-top: 30px;
+    font-size: 16px;
+    color: #b0b0b0;
+}
+
+.auth-container p a {
+    color: #87CEEB; /* Açık mavi */
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+
+.auth-container p a:hover {
+    color: #ADD8E6; /* Daha açık mavi */
+    text-decoration: underline;
+}
+
+/* Ana Chat Arayüzü */
+.container {
+    display: flex;
+    width: 90vw;
+    max-width: 1400px; /* Daha geniş chat alanı */
+    height: 90vh;
+    max-height: 850px; /* Daha uzun chat alanı */
+    background: rgba(255, 255, 255, 0.08); /* Hafif şeffaf */
+    border-radius: 25px; /* Çok daha yuvarlak köşeler */
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px); /* Daha güçlü cam efekti */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15); /* İnce, şeffaf kenarlık */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px; /* Genişletildi */
+    background: rgba(255, 255, 255, 0.05); /* Sidebar için hafif daha şeffaf */
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1); /* Hafif iç gölge */
+}
+
+.user-info {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info span {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 1.3em;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.logout-button {
+    background: rgba(255, 99, 71, 0.8); /* Domates kırmızısı yarı şeffaf */
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.1s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.logout-button:hover {
+    background: rgba(255, 99, 71, 1);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+}
+
+.channels h3 {
+    color: #b0b0b0;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.channel-list p {
+    padding: 12px 15px;
+    border-radius: 10px; /* Yuvarlaklaştırıldı */
+    color: #c0c0c0;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background 0.2s, color 0.2s;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.channel-list p:hover, .channel-list p.active-channel {
+    background: rgba(255, 255, 255, 0.15); /* Hover/active için daha belirgin şeffaflık */
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Sidebar - Online Users Bölümü */
+.online-users {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    flex-grow: 1; /* Gerekirse boşluğu doldursun */
+}
+
+.online-users h3 {
+    color: #b0b0b0;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.user-list {
+    max-height: calc(100% - 40px); /* Üstteki h3'ü hesaba kat */
+    overflow-y: auto;
+    padding-right: 5px; /* Scrollbar için boşluk */
+}
+
+/* Scrollbar stilini online kullanıcı listesi için */
+.user-list::-webkit-scrollbar {
+    width: 8px;
+}
+.user-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+.user-list::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.05);
+}
+.user-list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.user-list .user-item, .user-list .no-users {
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #c0c0c0;
+    cursor: pointer;
+    margin-bottom: 8px;
+    transition: background 0.2s, color 0.2s;
+    font-size: 1.1em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.user-list .user-item:hover, .user-list .user-item.active-user-item {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.user-list .user-item::before {
+    content: '•'; /* Online göstergesi */
+    color: #4CAF50; /* Yeşil nokta */
+    font-size: 1.5em;
+    line-height: 1;
+    margin-right: 8px;
+}
+
+.user-list .no-users {
+    cursor: default;
+    background: none;
+    color: #808080;
+    font-size: 0.9em;
+    text-align: center;
+    justify-content: center;
+    border: none;
+    box-shadow: none;
+}
+
+/* Main Chat Area */
+.main-chat {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.1); /* Ana chat alanı için koyu şeffaf arka plan */
+}
+
+/* Chat Header */
+.chat-header {
+    background: rgba(0, 0, 0, 0.2); /* Koyu şeffaf */
+    padding: 18px 25px;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-header .header-icon {
+    font-size: 1.2em; /* İkon boyutu */
+    font-weight: 700;
+}
+
+.chat-header[data-mode="general"] .header-icon::before {
+    content: '#'; 
+    color: #87CEEB; /* Mavi */
+}
+.chat-header[data-mode="private"] .header-icon::before {
+    content: '@'; 
+    color: #fc5c7d; /* Pembe/mor */
+}
+
+
+.messages {
+    flex-grow: 1;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Scrollbar stilini cam temasına uygun hale getirme */
+.messages::-webkit-scrollbar {
+    width: 10px;
+}
+.messages::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05); /* Yarı şeffaf track */
+    border-radius: 5px;
+}
+.messages::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.05); /* İnce şeffaf kenar */
+}
+.messages::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.message {
+    word-wrap: break-word;
+    display: flex;
+    align-items: baseline;
+    background: rgba(255, 255, 255, 0.05); /* Mesaj kutuları için şeffaf arka plan */
+    padding: 12px 18px;
+    border-radius: 15px; /* Yuvarlak köşeler */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background 0.2s ease;
+}
+
+.message:hover {
+    background: rgba(255, 255, 255, 0.08); /* Hover'da daha belirgin */
+}
+
+.message .username {
+    font-weight: 700;
+    color: #87CEEB; /* Açık mavi kullanıcı adı */
+    margin-right: 10px;
+    font-size: 1.05em;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.message.private-message .username {
+    color: #fc5c7d; /* Özel mesaj gönderen için farklı renk */
+}
+
+.message .timestamp {
+    font-size: 0.78em;
+    color: rgba(255, 255, 255, 0.5); /* Hafif soluk zaman damgası */
+    margin-left: 8px;
+    white-space: nowrap; /* Saati tek satırda tut */
+}
+
+.message .text {
+    color: #ffffff;
+    flex-grow: 1;
+}
+
+.message.system-username {
+    color: #87CEEB; /* Sistem mesajı gönderen adı için renk */
+}
+
+.message.system-notification {
+    text-align: center;
+    font-style: italic;
+    color: #b0b0b0;
+    background: rgba(255, 255, 255, 0.03);
+    border: none;
+    box-shadow: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+
+.input-area {
+    display: flex;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.15); /* Daha koyu şeffaf */
+    align-items: center;
+}
+
+.input-area input[type="text"] {
+    flex-grow: 1;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 12px; /* Daha yuvarlak */
+    background: rgba(255, 255, 255, 0.12); /* Input için şeffaf arka plan */
+    color: #ffffff;
+    font-size: 1.05em;
+    margin-right: 15px;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); /* İç gölge */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-area input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.input-area input[type="text"]:focus {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 1px 5px rgba(0,0,0,0.3), 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.input-area button {
+    padding: 14px 25px;
+    background: linear-gradient(45deg, #87CEEB, #20B2AA); /* Cam temasına uygun buton rengi */
+    color: white;
+    border: none;
+    border-radius: 12px; /* Daha yuvarlak */
+    cursor: pointer;
+    font-size: 1.05em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.input-area button:hover {
+    background: linear-gradient(45deg, #7AC5DA, #1D9990);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.input-area button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}

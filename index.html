@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sohbet Odası</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="user-info">
+                <span>{{ username }}</span>
+                <a href="{{ url_for('logout') }}" class="logout-button">Çıkış Yap</a>
+            </div>
+            <div class="channels">
+                <h3>Kanallar</h3>
+                <div class="channel-list">
+                    <p class="active-channel" id="generalChatChannel" data-channel-id="general"># genel-sohbet</p>
+                </div>
+            </div>
+            <div class="online-users">
+                <h3>Çevrimiçi Kullanıcılar</h3>
+                <div class="user-list" id="onlineUsersList">
+                    <p class="no-users">Yükleniyor...</p>
+                </div>
+            </div>
+        </div>
+        <div class="main-chat">
+            <div class="chat-header" id="chatHeader" data-mode="general">
+                <span class="header-icon"></span> <span id="chatTitle">genel-sohbet</span>
+            </div>
+            <div class="messages" id="messages">
+                </div>
+            <div class="input-area">
+                <input type="text" id="messageInput" placeholder="Mesajınızı yazın..." autofocus>
+                <button onclick="sendMessage()">Gönder</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const MY_USER_ID = {{ user_id }}; // user_id'yi app.py'den direkt gönderiyoruz
+        const MY_USERNAME = "{{ username }}"; // Kendi kullanıcı adımızı da gönderelim
+    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
